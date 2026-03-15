@@ -1,0 +1,108 @@
+# =========================================================
+# LsEnderChest - config-guide.yml
+# =========================================================
+#
+# This file explains every option in the normal config.yml.
+#
+# This plugin allows players to have custom ender chests
+# with permission-based row sizes and SQL storage.
+#
+# Supported storage types:
+#   sqlite -> local database file (recommended)
+#   mysql  -> external MySQL database (recommended if you want same ender chest storage across multiple servers)
+#
+# =========================================================
+
+
+storage:
+
+  # Choose how ender chest data should be stored.
+  #
+  # Options:
+  #   sqlite -> stores data locally in a .db file
+  #   mysql  -> stores data in a MySQL database
+  #
+  type: "sqlite"
+
+  sqlite:
+
+    # Name of the SQLite database file.
+    #
+    # The file will be created inside the plugin folder.
+    #
+    # Example location:
+    # plugins/LsEnderChest/lsenderchest.db
+    #
+    file: "lsenderchest.db"
+
+  mysql:
+
+    # Address of the MySQL server.
+    #
+    # Examples:
+    # localhost
+    # 127.0.0.1
+    # db.example.com
+    #
+    host: "localhost"
+
+    # MySQL server port.
+    # Default MySQL port: 3306
+    #
+    port: 3306
+
+    # Name of the database used by the plugin.
+    #
+    database: "lsenderchest"
+
+    # MySQL username used to connect.
+    #
+    username: "user"
+
+    # MySQL password used to connect.
+    #
+    password: "password"
+
+    # Extra connection parameters.
+    #
+    # Usually does not need to be changed.
+    #
+    parameters: "?useSSL=false&autoReconnect=true"
+
+
+settings:
+
+  # Controls how player UUIDs are generated.
+  #
+  # true  -> normal Mojang UUIDs (online-mode servers)
+  # false -> offline-mode/cracked UUID generation
+  #
+  # IMPORTANT:
+  # Changing this after players already have stored data
+  # may cause their old ender chest data to appear missing.
+  #
+  online-mode: true
+
+
+  # Default amount of rows a player receives if they
+  # do not have any row permissions.
+  #
+  # Minimum: 1
+  # Maximum: 6
+  #
+  default-rows: 1
+
+
+  # Controls /lsec tab completion.
+  #
+  # true  -> shows players who joined before
+  # false -> only shows online players
+  #
+  tab-complete-offline-players: true
+
+  # the displayed messages when certain events happen.
+messages:
+  no-permission: "&cYou do not have permission."
+  player-not-found: "&cThat player could not be found."
+  opened-other: "&aOpened %player%'s ender chest."
+  reloaded: "&aConfiguration reloaded."
