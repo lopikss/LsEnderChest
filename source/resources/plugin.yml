@@ -1,0 +1,43 @@
+name: LsEnderChest
+version: 1.0.1
+main: me.lopikss.lsenderchest.LsEnderChestPlugin
+api-version: '1.21'
+author: lopikss
+description: Custom permission-based ender chest plugin with SQL storage.
+
+commands:
+  lsec:
+    description: Open your custom ender chest or inspect another player's chest.
+    usage: /lsec [player|reload]
+
+permissions:
+  enderchest.use:
+    description: Allows opening your own custom ender chest.
+    default: op
+
+  enderchest.admin:
+    description: Allows opening and editing other players' ender chests and reloading the plugin.
+    default: op
+
+  enderchest.bypass:
+    description: Allows using the vanilla ender chest instead of the plugin one.
+    default: false
+
+  enderchest.rows.1:
+    description: Allows 1 row in the custom ender chest.
+    default: false
+  enderchest.rows.2:
+    description: Allows 2 rows in the custom ender chest.
+    default: false
+  enderchest.rows.3:
+    description: Allows 3 rows in the custom ender chest.
+    default: false
+  enderchest.rows.4:
+    description: Allows 4 rows in the custom ender chest.
+    default: false
+  enderchest.rows.5:
+    description: Allows 5 rows in the custom ender chest.
+    default: false
+  enderchest.rows.6:
+    description: Allows 6 rows in the custom ender chest.
+    default: false

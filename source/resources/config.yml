@@ -1,0 +1,24 @@
+storage:
+  type: "sqlite"
+
+  sqlite:
+    file: "lsenderchest.db"
+
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "lsenderchest"
+    username: "user"
+    password: "password"
+    parameters: "?useSSL=false&autoReconnect=true"
+
+settings:
+  online-mode: true
+  default-rows: 1
+  tab-complete-offline-players: true
+
+messages:
+  no-permission: "&cYou do not have permission."
+  player-not-found: "&cThat player could not be found."
+  opened-other: "&aOpened %player%'s ender chest."
+  reloaded: "&aConfiguration reloaded."
