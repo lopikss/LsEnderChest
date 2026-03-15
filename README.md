@@ -1,0 +1,1 @@
+https://lsplugins.com/licence/
