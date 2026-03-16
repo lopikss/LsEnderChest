@@ -38,7 +38,7 @@ This allows servers to switch to **LsEnderChest without players losing their ite
 
 ---
   
-![LsEnderChest Preview](https://media.discordapp.net/attachments/890970451579371590/1482690647008874671/echest.png?ex=69b7dec5&is=69b68d45&hm=6fef7c6d4cca6dcdc8ceeec665730aa5a7e5ab0b03cf48ad2de9ed903ec2e705&=&format=webp&quality=lossless&width=943&height=653)
+![LsEnderChest Preview](https://raw.githubusercontent.com/lopikss/LsEnderChest/refs/heads/main/images/echest.png)
 
 </div>
 
