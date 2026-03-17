@@ -56,13 +56,13 @@ Opens another player's Ender Chest (requires permission).
 
 # Permissions
 
-| Permission            | Description                                     | Default |
-| --------------------- | ----------------------------------------------- | ------- |
-| `enderchest.use`      | Allows players to use `/lsec`/open encder chest | true    |
-| `enderchest.admin`    | Allows opening other players' Ender Chests      | op      |
-| `enderchest.bypass`   | Allows players to use the vanilla ender chest   | op      |
-| `enderchest.rows.1-6` | Allows a 1 row Ender Chest                      | false   |
-| `enderchest.rows.2`   | Allows a 2 row Ender Chest                      | false   |
+| Permission            | Description                                   | Default |
+| --------------------- | --------------------------------------------- | ------- |
+| `enderchest.use`      | Allows players to open encder chest           | true    |
+| `enderchest.admin`    | Allows opening other players' Ender Chests    | op      |
+| `enderchest.bypass`   | Allows players to use the vanilla ender chest | op      |
+| `enderchest.rows.1-6` | Allows a 1 row Ender Chest                    | false   |
+| `enderchest.rows.2`   | Allows a 2 row Ender Chest                    | false   |
 
 
 ---
