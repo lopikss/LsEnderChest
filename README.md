@@ -58,7 +58,7 @@ Opens another player's Ender Chest (requires permission).
 
 | Permission            | Description                                   | Default |
 | --------------------- | --------------------------------------------- | ------- |
-| `enderchest.use`      | Allows players to open encder chest           | true    |
+| `enderchest.use`      | Allows players to open ender chest            | true    |
 | `enderchest.admin`    | Allows opening other players' Ender Chests    | op      |
 | `enderchest.bypass`   | Allows players to use the vanilla ender chest | op      |
 | `enderchest.rows.1-6` | Allows a 1 row Ender Chest                    | false   |
