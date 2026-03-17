@@ -19,24 +19,24 @@ Built to be **simple, fast, and configurable**, with support for **SQLite and My
 * 👀 **Offline player support**
 * 🔒 Admin bypass option
   
+
 ---
 
 ### 🔄 LsEnderChestConverter
 
-If you are switching from **vanilla Ender Chests** to **LsEnderChest**, you can use the companion plugin **[LsEnderChestConverter](https://github.com/lopikss/LsEnderChestConverter/releases)**.
+Switching from **vanilla Ender Chests** to **LsEnderChest**?
+Use **[LsEnderChestConverter](https://github.com/lopikss/LsEnderChestConverter/releases)** to migrate safely.
 
-This plugin converts existing **vanilla Ender Chest inventories** into the storage system used by **LsEnderChest**.
+It **automatically converts each player’s Ender Chest when they join**, so you don’t have to run any commands.
 
-Features:
+* ⚡ Automatic conversion on join (one-time per player)
+* 🛠️ Optional manual conversion commands
+* 🔒 Safe migration — no item loss
 
-* 🔁 Converts existing player Ender Chests
-* 👤 Optional **convert-on-first-join** system
-* ⚡ Safe migration for existing servers
-* 🛠️ Manual conversion command
-
-This allows servers to switch to **LsEnderChest without players losing their items**.
+Switch to **LsEnderChest without players losing their items**.
 
 ---
+
   
 ![LsEnderChest Preview](https://raw.githubusercontent.com/lopikss/LsEnderChest/refs/heads/main/images/echest.png)
 
