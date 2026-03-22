@@ -11,14 +11,24 @@ Built to be **simple, fast, and configurable**, with support for **SQLite and My
 # Features
 
 * 📦 **Expandable Ender Chests** (1–6 rows via permissions)
+
 * 👤 `/lsec` to open your Ender Chest
-* 🛠️ `/lsec <player>` to view other players' chests
+
+* 🛠️ `/lsec <player>` to view or edit other players' chests
+
 * 💾 **SQLite & MySQL support**
+
 * 🌐 Works with **online-mode and offline-mode servers**
-* ⚡ Lightweight and efficient
+
+* ⚡ **Async saving** (no lag on close)
+
 * 👀 **Offline player support**
+
 * 🔒 Admin bypass option
-  
+
+* 🧱 **Advanced Item Blocking**
+
+* 🧾 **Dual Logging System**
 
 ---
 
@@ -56,13 +66,14 @@ Opens another player's Ender Chest (requires permission).
 
 # Permissions
 
-| Permission            | Description                                   | Default |
-| --------------------- | --------------------------------------------- | ------- |
-| `enderchest.use`      | Allows players to open ender chest            | true    |
-| `enderchest.admin`    | Allows opening other players' Ender Chests    | op      |
-| `enderchest.bypass`   | Allows players to use the vanilla ender chest | op      |
-| `enderchest.rows.1-6` | Allows a 1 row Ender Chest                    | false   |
-| `enderchest.rows.2`   | Allows a 2 row Ender Chest                    | false   |
+| Permission                  | Description                                            | Default |
+| --------------------------- | ------------------------------------------------------ | ------- |
+| `enderchest.use`            | Allows players to open their Ender Chest               | true    
+| `enderchest.admin`          | Allows opening and editing other players' Ender Chests | op      
+| `enderchest.view.other`     | Allows viewing other players' Ender Chests (read-only) | op      
+| `enderchest.bypass`         | Allows players to use the vanilla Ender Chest          | op      
+| `enderchest.blocked.bypass` | Bypasses item restrictions                             | op      
+| `enderchest.rows.1-6`       | Allows a 1-6 row Ender Chest                           | false   
 
 
 ---
