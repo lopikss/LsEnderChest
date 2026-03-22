@@ -1,0 +1,14 @@
+# or WHITELIST
+mode: BLACKLIST
+
+# Full material list:
+# https://jd.papermc.io/paper/1.21.11/org/bukkit/Material.html
+blocked-items:
+  - ENDER_DRAGON_EGG
+  - PLAYER_HEAD
+
+blocked-lore:
+  - Soulbound
+
+blocked-nbt:
+  - CustomModelData

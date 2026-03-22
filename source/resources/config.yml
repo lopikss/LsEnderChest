@@ -1,0 +1,36 @@
+# =========================================================
+#                      LsEnderChest
+# =========================================================
+storage:
+  type: "sqlite"
+
+  sqlite:
+    file: "EnderChest/database.db"
+
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "lsenderchest"
+    username: "user"
+    password: "password"
+    parameters: "?useSSL=false&autoReconnect=true"
+
+settings:
+  online-mode: true
+  default-rows: 1
+  tab-complete-offline-players: true
+
+logging:
+  simple: true
+  detailed: true
+
+title:
+  own: "Your Ender Chest"
+  other: "%player%'s Ender Chest"
+
+messages:
+  no-permission: "&cYou do not have permission."
+  player-not-found: "&cThat player could not be found."
+  opened-other: "&aOpened %player%'s ender chest."
+  reloaded: "&aConfiguration reloaded."
+  blocked-item: "&cThat item is not allowed in your Ender Chest."

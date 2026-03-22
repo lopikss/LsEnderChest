@@ -1,0 +1,170 @@
+# =========================================================
+# LsEnderChest - config-guide.yml
+# =========================================================
+#
+# This file explains every option in the normal config.yml.
+#
+# This plugin allows players to have custom ender chests
+# with permission-based row sizes and SQL storage.
+#
+# Supported storage types:
+#   sqlite -> local database file (recommended)
+#   mysql  -> external MySQL database (recommended if you want same ender chest storage across multiple servers)
+#
+# =========================================================
+
+storage:
+
+  # Choose how ender chest data should be stored.
+  #
+  # Options:
+  #   sqlite -> stores data locally in a .db file
+  #   mysql  -> stores data in a MySQL database
+  #
+  type: "sqlite"
+
+  sqlite:
+
+    # Name or path of the SQLite database file.
+    #
+    # The file will be created inside the plugin folder.
+    #
+    # Example:
+    # "lsenderchest.db"
+    # "EnderChest/database.db"
+    #
+    file: "EnderChest/database.db"
+
+  mysql:
+
+    # Address of the MySQL server.
+    #
+    # Examples:
+    # localhost
+    # 127.0.0.1
+    # db.example.com
+    #
+    host: "localhost"
+
+    # MySQL server port.
+    # Default MySQL port: 3306
+    #
+    port: 3306
+
+    # Name of the database used by the plugin.
+    #
+    database: "lsenderchest"
+
+    # MySQL username used to connect.
+    #
+    username: "user"
+
+    # MySQL password used to connect.
+    #
+    password: "password"
+
+    # Extra connection parameters.
+    #
+    # Usually this does not need to be changed.
+    #
+    parameters: "?useSSL=false&autoReconnect=true"
+
+settings:
+
+  # Controls how player UUIDs are generated.
+  #
+  # true  -> normal Mojang UUIDs (online-mode servers)
+  # false -> offline-mode/cracked UUID generation
+  #
+  # IMPORTANT:
+  # Changing this after players already have stored data
+  # may cause their old ender chest data to appear missing.
+  #
+  online-mode: true
+
+  # Default amount of rows a player receives if they
+  # do not have any row permissions.
+  #
+  # Minimum: 1
+  # Maximum: 6
+  #
+  default-rows: 1
+
+  # Controls /lsec tab completion.
+  #
+  # true  -> shows players who joined before
+  # false -> only shows online players
+  #
+  tab-complete-offline-players: true
+
+logging:
+
+  # Simple logging writes short readable item changes.
+  #
+  # File:
+  # plugins/LsEnderChest/logs/enderchest.log
+  #
+  # Format:
+  # + player ITEM xamount [yyyy-MM-dd HH:mm:ss]
+  # - player ITEM xamount [yyyy-MM-dd HH:mm:ss]
+  #
+  # This log only tracks items being added to or removed
+  # from Ender Chests.
+  #
+  simple: true
+
+  # Detailed logging writes a full audit log.
+  #
+  # File:
+  # plugins/LsEnderChest/logs/detailed.log
+  #
+  # This includes extra information such as:
+  # - who opened whose chest
+  # - item move details
+  # - blocked item attempts
+  # - read-only edit attempts
+  # - click type and inventory action
+  # - world and coordinates
+  #
+  detailed: true
+
+title:
+
+  # Title shown when a player opens their own Ender Chest.
+  #
+  # Leave without color codes for vanilla look.
+  #
+  own: "Your Ender Chest"
+
+  # Title shown when opening another player's Ender Chest.
+  #
+  # Available placeholders:
+  # %player% -> target player's name
+  #
+  other: "%player%'s Ender Chest"
+
+messages:
+
+  # Message shown when the player does not have permission.
+  #
+  no-permission: "&cYou do not have permission."
+
+  # Message shown when the target player cannot be found.
+  #
+  player-not-found: "&cThat player could not be found."
+
+  # Message shown after opening another player's Ender Chest.
+  #
+  # Available placeholders:
+  # %player% -> target player's name
+  #
+  opened-other: "&aOpened %player%'s ender chest."
+
+  # Message shown after using /lsec reload.
+  #
+  reloaded: "&aConfiguration reloaded."
+
+  # Message shown when a blocked item is attempted to be placed
+  # into an Ender Chest.
+  #
+  blocked-item: "&cThat item is not allowed in your Ender Chest."
