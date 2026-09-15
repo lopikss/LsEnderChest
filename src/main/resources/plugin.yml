@@ -1,0 +1,60 @@
+name: LsEnderChest
+version: '${version}'
+main: com.lopikss.lsenderchest.LsEnderChestPlugin
+api-version: '26.3'
+author: lopikss
+website: https://lsplugins.com
+description: Secure permission-based virtual Ender Chests with restore history, overflow protection and built-in migration.
+
+# Load after Essentials so LsEnderChest intentionally owns the bare /ec and /enderchest labels.
+softdepend:
+  - Essentials
+  - LsEnderChestConverter
+
+libraries:
+  - org.xerial:sqlite-jdbc:3.53.4.0
+  - com.mysql:mysql-connector-j:26.7.0
+
+permissions:
+  enderchest.use:
+    description: Allows opening your own custom Ender Chest.
+    default: true
+
+  enderchest.admin:
+    description: Allows editing other players' chests, using restore and reloading the plugin.
+    default: op
+
+  enderchest.view.other:
+    description: Allows opening other players' Ender Chests in read-only mode.
+    default: false
+
+  enderchest.convert:
+    description: Allows running the built-in vanilla Ender Chest converter.
+    default: op
+
+  enderchest.bypass:
+    description: Uses the vanilla Ender Chest instead of the custom one.
+    default: false
+
+  enderchest.blocked.bypass:
+    description: Bypasses item restrictions.
+    default: op
+
+  enderchest.rows.1:
+    description: Gives 1 row in the custom Ender Chest.
+    default: false
+  enderchest.rows.2:
+    description: Gives 2 rows in the custom Ender Chest.
+    default: false
+  enderchest.rows.3:
+    description: Gives 3 rows in the custom Ender Chest.
+    default: false
+  enderchest.rows.4:
+    description: Gives 4 rows in the custom Ender Chest.
+    default: false
+  enderchest.rows.5:
+    description: Gives 5 rows in the custom Ender Chest.
+    default: false
+  enderchest.rows.6:
+    description: Gives 6 rows in the custom Ender Chest.
+    default: false

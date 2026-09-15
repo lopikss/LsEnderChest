@@ -1,0 +1,18 @@
+# BLACKLIST = listed matches are blocked.
+# WHITELIST = only listed matches are allowed.
+mode: BLACKLIST
+
+# Material names for Minecraft 26.3 / Paper.
+# https://jd.papermc.io/paper/26.3/org/bukkit/Material.html
+blocked-items:
+  - DRAGON_EGG
+  - PLAYER_HEAD
+
+# Matches plain-text lore lines (legacy & color codes are ignored while comparing).
+blocked-lore:
+  - Soulbound
+
+# Supported item data components.
+# Old 1.1.0 configs using "blocked-nbt: [CustomModelData]" are still read automatically.
+blocked-components:
+  - CUSTOM_MODEL_DATA

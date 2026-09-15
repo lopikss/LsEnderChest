@@ -1,0 +1,453 @@
+# =========================================================
+#                    LsEnderChest 2.0.0
+#                    Configuration Guide
+# =========================================================
+#
+# Most servers can use the default configuration without
+# changing anything.
+#
+# After changing storage or UUID-related settings, restart
+# the server instead of using /ec reload.
+# =========================================================
+
+
+# =========================================================
+# Storage
+# =========================================================
+#
+# Available storage types:
+#   sqlite - Stores everything locally in a database file.
+#            Recommended for a normal single-server setup.
+#
+#   mysql  - Stores everything in an external MySQL database.
+#            Useful when you want database access outside the
+#            server or have a setup that requires MySQL.
+#
+# Only the selected storage type is used.
+
+storage:
+  type: "sqlite"
+
+  # Path relative to:
+  # plugins/LsEnderChest/
+  #
+  # With the default value, the database will be stored at:
+  # plugins/LsEnderChest/EnderChest/database.db
+  #
+  # Paths outside the LsEnderChest folder are rejected.
+  sqlite:
+    file: "EnderChest/database.db"
+
+  # MySQL connection details.
+  # These settings are ignored while storage.type is "sqlite".
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "lsenderchest"
+    username: "user"
+    password: "password"
+    parameters: "?useSSL=false&autoReconnect=true"
+
+
+# =========================================================
+# General Settings
+# =========================================================
+
+settings:
+
+  # Controls how player UUIDs are resolved.
+  #
+  # true:
+  #   Use the player's authenticated UUID.
+  #   Recommended for normal online-mode servers and properly
+  #   configured proxies that forward real player UUIDs.
+  #
+  # false:
+  #   Generate UUIDs using Minecraft's OfflinePlayer:<name>
+  #   algorithm.
+  #
+  # WARNING:
+  # Changing this after players already have stored Ender Chests
+  # can make their existing storage appear missing because the
+  # plugin will begin looking under a different UUID.
+  #
+  # Requires a restart after changing.
+  online-mode: true
+
+  # Number of rows given to players who do not have any
+  # enderchest.rows.1 through enderchest.rows.6 permission.
+  #
+  # Valid values: 1-6
+  #
+  # When multiple row permissions exist, the highest one wins.
+  #
+  # Example:
+  #   enderchest.rows.2
+  #   enderchest.rows.4
+  #
+  # Result: 4 rows
+  default-rows: 1
+
+  # Controls whether players who are currently offline are
+  # included in command tab completion.
+  #
+  # true:
+  #   /ec <player> can suggest known offline players too.
+  #
+  # false:
+  #   Only currently online players are suggested.
+  #
+  # This only affects suggestions. Admins can still access
+  # supported offline-player data normally.
+  tab-complete-offline-players: true
+
+
+# =========================================================
+# Vanilla Ender Chest Conversion
+# =========================================================
+
+conversion:
+
+  # Automatically converts a player's vanilla Ender Chest into
+  # LsEnderChest storage the first time they join.
+  #
+  # This replaces the old standalone LsEnderChestConverter.
+  #
+  # The migration process is designed to be safe:
+  #
+  # 1. Vanilla contents are read.
+  # 2. LsEnderChest storage is written.
+  # 3. The original vanilla contents are verified again.
+  # 4. Only after a successful save are the vanilla contents cleared.
+  #
+  # Each player is only automatically converted once.
+  convert-on-first-join: true
+
+
+# =========================================================
+# Logging & Restore History
+# =========================================================
+
+logging:
+
+  # Enables detailed audit logging.
+  #
+  # Instead of global simple.log and detailed.log files,
+  # LsEnderChest 2.0 stores one journal per Ender Chest owner:
+  #
+  # plugins/LsEnderChest/logs/players/<uuid>.log
+  #
+  # These logs can include:
+  # - Chest opens
+  # - Item additions/removals
+  # - Admin access
+  # - Blocked item attempts
+  # - Overflow creation
+  # - Conversion actions
+  # - Restore operations
+  #
+  # Each action records the actual player/admin responsible.
+  #
+  # Disabling this only disables verbose audit entries.
+  # Restore snapshots required by /ec restore are still kept.
+  enabled: true
+
+
+restore:
+
+  # Maximum number of restore points displayed in:
+  #
+  # /ec restore <player>
+  #
+  # A restore point represents an Ender Chest session rather than
+  # every individual item click.
+  #
+  # Example:
+  #
+  # Player opens chest
+  #   -> moves 20 different items
+  #   -> closes chest
+  #
+  # This becomes ONE restore point containing the complete
+  # before/after state for that session.
+  #
+  # Older audit entries are not deleted because of this value.
+  # It only limits how much history is loaded into the restore GUI.
+  max-history: 100
+
+
+# =========================================================
+# Update Checker
+# =========================================================
+
+updates:
+
+  # Checks the official LsEnderChest version file for updates:
+  #
+  # LsEnderChest never automatically downloads or installs updates.
+  enabled: true
+
+  # Notify operators and players with enderchest.admin when a
+  # newer version is available.
+  #
+  # The notification contains a clickable Modrinth download link.
+  notify-admins: true
+
+
+# =========================================================
+# Inventory Title
+# =========================================================
+
+title:
+
+  # Title shown when viewing an LsEnderChest.
+  #
+  # %player% is replaced with the chest owner's name.
+  #
+  # A shared neutral title is used because players and admins can
+  # view/edit the exact same live Ender Chest session at once.
+  chest: "%player%'s Ender Chest"
+
+
+# =========================================================
+# Overflow Chest Appearance
+# =========================================================
+#
+# Overflow Chests are created automatically when a player loses
+# access to rows that previously contained items.
+#
+# The chest itself is a special one-time recovery item.
+# It cannot be placed and does NOT act as portable storage.
+#
+# Right-clicking it consumes the Overflow Chest and releases all
+# protected items onto the ground at the player's location.
+#
+# Color codes using & are supported.
+#
+# Available placeholders:
+#
+#   %items%
+#     Number of item stacks stored in the Overflow Chest.
+#
+#   %created%
+#     Date and time the Overflow Chest was created.
+#
+#   %source_rows%
+#     Number of Ender Chest rows the player had before resizing.
+#
+#   %target_rows%
+#     Number of rows available after resizing.
+#
+# An empty entry ("") creates a blank lore line.
+#
+# Changing the lore affects newly generated Overflow Chests.
+# Existing Overflow Chest items keep the lore they were created with.
+
+overflow-chest:
+  lore:
+    - "&7Extra items that no longer fit in your Ender Chest."
+    - ""
+    - "&fItems: &e%items%"
+    - "&fCreated: &7%created%"
+    - ""
+    - "&bRight-click to release all items"
+    - "&8Contents will be dropped on the ground."
+    - "&8One-time use • Cannot be placed"
+
+
+# =========================================================
+# Messages
+# =========================================================
+#
+# Minecraft color codes using & are supported.
+#
+# Examples:
+#   &a = green
+#   &c = red
+#   &e = yellow
+#   &6 = gold
+#
+# Available placeholders depend on the message.
+
+messages:
+  no-permission: "&cYou do not have permission."
+  player-not-found: "&cThat player could not be found."
+  opened-other: "&aOpened %player%'s Ender Chest."
+  reloaded: "&aConfiguration reloaded."
+  restart-required: "&eStorage or UUID settings changed. Restart the server to apply them."
+  invalid-usage: "&cUse /lsec, /ec or /enderchest [player|reload|restore <player>|convert <player|all>|confirm]."
+  blocked-item: "&cThat item is not allowed in your Ender Chest."
+  storage-error: "&cCould not access that Ender Chest. Check the server console."
+  conversion-in-progress: "&eYour Ender Chest is being migrated. Try again in a moment."
+  maintenance-in-progress: "&eThat Ender Chest is temporarily locked for a safe maintenance operation."
+  overflow-created: "&eYour Ender Chest got smaller. Extra items were safely moved into an &6Overflow Chest&e in the final slot."
+
+
+# =========================================================
+# Commands
+# =========================================================
+#
+# /lsec, /ec and /enderchest are equivalent.
+#
+# /ec
+#   Opens your own Ender Chest.
+#
+# /ec <player>
+#   Opens another player's live Ender Chest.
+#   Admins can access it even while the owner is using it.
+#
+# /ec restore <player>
+#   Opens the restore-history GUI.
+#   Restore points can be previewed before confirmation.
+#
+# /ec convert <player> (i suggest using auto convert)
+#   Safely converts one online player's vanilla Ender Chest.
+#
+# /ec convert all (i suggest using auto convert)
+#   Prepares a bulk conversion but DOES NOT start it.
+#
+# /ec confirm (i suggest using auto convert)
+#   Confirms a pending dangerous action such as convert all.
+#   Confirmations automatically expire after 30 seconds.
+#
+# /ec reload
+#   Reloads supported configuration files and settings.
+#
+#
+# EssentialsX compatibility:
+#
+# /ec and /enderchest are registered as full LsEnderChest commands,
+# not aliases.
+#
+# When EssentialsX is installed, LsEnderChest loads after it and
+# intentionally takes ownership of the normal /ec and /enderchest
+# command labels.
+
+
+# =========================================================
+# Overflow Protection
+# =========================================================
+#
+# Player storage is automatically protected when their row
+# permission becomes smaller.
+#
+# Example:
+#
+# Player previously had 4 rows.
+# Player now only has permission for 1 row.
+#
+# Slots 1-8 remain unchanged.
+# Everything from slot 9 onward is moved into an Overflow Chest.
+# The Overflow Chest is placed into slot 9.
+#
+# For any chest size, the final available slot becomes the
+# Overflow Chest slot.
+#
+# Overflow Chests:
+# - Are normal CHEST items visually
+# - Cannot be placed
+# - Cannot be used as portable storage
+# - Store their real contents safely server-side
+# - Use protected plugin metadata to reference that storage
+# - Are one-time recovery items
+#
+# Right-clicking an Overflow Chest:
+#
+# 1. Verifies that the Overflow Chest is valid.
+# 2. Claims its protected server-side storage.
+# 3. Consumes the Overflow Chest item.
+# 4. Drops every stored item onto the ground.
+#
+# The Overflow Chest does NOT open an inventory.
+# Players cannot add items to it.
+#
+# Reusing or copying the visible item name/lore does not create
+# another valid Overflow Chest because the real contents are
+# stored and validated server-side.
+
+
+# =========================================================
+# Restore Safety
+# =========================================================
+#
+# /ec restore <player> uses session-based restore points.
+#
+# A session begins when a player's Ender Chest is opened and ends
+# when the final editable viewer closes it.
+#
+# If the player and an administrator are both viewing the chest,
+# they are interacting with the same live inventory session.
+#
+# Before a historical restore is applied, LsEnderChest creates a
+# backup of the current state.
+#
+# This means an accidental restore can itself be reverted using
+# the restore history.
+#
+# Historical Overflow Chests are restored safely using new backing
+# storage records instead of reusing old claimed Overflow IDs.
+
+
+# =========================================================
+# Admin Access
+# =========================================================
+#
+# Administrators with the required permission can use:
+#
+# /ec <player>
+#
+# even while that player currently has their Ender Chest open.
+#
+# Both users see and edit the SAME live inventory.
+#
+# LsEnderChest does not create a second editable copy of the chest.
+# This avoids stale saves and duplication issues caused by multiple
+# independent inventory instances.
+#
+# Admin actions are recorded in the target player's UUID journal,
+# including the administrator responsible for the action.
+
+
+# =========================================================
+# Bulk Command Safety
+# =========================================================
+#
+# Potentially dangerous bulk actions use a confirmation system.
+#
+# Example:
+#
+# /ec convert all
+#
+# does NOT immediately convert everyone.
+#
+# The command only prepares the action.
+#
+# The administrator must then run:
+#
+# /ec confirm
+#
+# within 30 seconds.
+#
+# If no confirmation is received, the pending action expires and
+# nothing is changed.
+
+
+# =========================================================
+# Reload Behavior
+# =========================================================
+#
+# /ec reload reloads:
+#
+# - Messages
+# - Inventory title
+# - Overflow Chest lore
+# - Conversion settings
+# - Logging settings
+# - Restore settings
+# - Update settings
+# - converted-players.yml
+# - blocked-items.yml
+#
+# Storage connection settings and settings.online-mode require
+# a full server restart.
+# =========================================================
